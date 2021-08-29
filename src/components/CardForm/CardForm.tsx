@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { Button, IconButton} from '@material-ui/core';
+import { Button, IconButton, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import TextField from '@material-ui/core/TextField';
 
@@ -34,7 +34,11 @@ const Form = styled.div`
     justify-content: space-between;
 `;
 
-const CardForm:React.FC = () => {
+interface CardFormProps {
+    handleClick: any
+};
+
+const CardForm:React.FC<CardFormProps> = (props) => {
 
   const [creditCardNo, setCreditCardNo] = useState<number>();
   const [cvc, setCvc] = useState<number>();
@@ -98,7 +102,7 @@ const CardForm:React.FC = () => {
   return (
     <Container>
         <NavigationContainer>
-            <IconButton name='HamburgerButton' data-testid='HamburgerButton'><MenuIcon fontSize='large'/></IconButton>
+            <IconButton name='HamburgerButton' data-testid='HamburgerButton' onClick={() => props.handleClick()}><MenuIcon fontSize='large'/></IconButton>
             <Header><h1 data-testid='Register'>Register Card Form</h1></Header>
         </NavigationContainer>
         <FormContainer>
@@ -119,7 +123,7 @@ const CardForm:React.FC = () => {
                     />
                     <TextField 
                         name='CVC'
-                        data-testid='data-testid'
+                        data-testid='CVC'
                         style={{width: '100px', marginRight: '20px'}}
                         required 
                         label="CVC" 
