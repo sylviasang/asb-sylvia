@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
+import CardForm from './CardForm';
 
 const App:React.FC = () => {
-  return (
-    <div>Initial Commit</div>
-  )
+    const [toggle, setToggle] = useState<boolean>(true);
+    return <CardForm />;
 }
+
 export default App;
