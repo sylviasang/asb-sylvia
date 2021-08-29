@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render with props 1`] = `
+<div
+  class="sc-bdfBQB aujAO"
+>
+  <div
+    class="sc-gsTEea hGQBnA"
+  >
+    <button
+      class="MuiButtonBase-root MuiIconButton-root"
+      data-testid="ArrowBack"
+      name="ArrowBackBotton"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+          />
+        </svg>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <div
+      class="sc-dlfnuX jzRvPj"
+    >
+      <h1
+        data-testid="Menu"
+      >
+        Menu
+      </h1>
+    </div>
+  </div>
+  <div
+    class="sc-hKgJUU hZthbb"
+  >
+    <h2
+      style="margin-top: 20px;"
+    >
+      This is menu content
+    </h2>
+  </div>
+</div>
+`;

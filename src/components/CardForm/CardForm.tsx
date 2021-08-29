@@ -111,7 +111,7 @@ const CardForm:React.FC<CardFormProps> = (props) => {
                 <form onSubmit={handleSubmit}>
                     <TextField
                         name='Credit Card Number Input'
-                        data-testid='CreditCardNumber'
+                        inputProps={{ 'data-testid': 'CreditCardNumber' }}
                         style={{display: 'block', marginBottom: '20px', width: 400}} 
                         required 
                         label="Credit Card Number" 
@@ -123,7 +123,7 @@ const CardForm:React.FC<CardFormProps> = (props) => {
                     />
                     <TextField 
                         name='CVC'
-                        data-testid='CVC'
+                        inputProps={{ 'data-testid': 'CVC' }}
                         style={{width: '100px', marginRight: '20px'}}
                         required 
                         label="CVC" 
@@ -136,7 +136,7 @@ const CardForm:React.FC<CardFormProps> = (props) => {
                     />
                     <TextField
                         name='Expire'
-                        data-testid='Expire'
+                        inputProps={{ 'data-testid': 'Expire' }}
                         style={{width: '120px', marginRight: '20px'}}
                         required 
                         label="Expire" 
