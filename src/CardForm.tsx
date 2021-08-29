@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import { Button, IconButton, makeStyles } from '@material-ui/core';
+import { Button, IconButton} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import TextField from '@material-ui/core/TextField';
 
 const Container = styled.div`
     display: flex;
-    flex-direction: column
+    flex-direction: column;
 `;
 
 const NavigationContainer = styled.div`
@@ -35,6 +35,66 @@ const Form = styled.div`
 `;
 
 const CardForm:React.FC = () => {
+
+  const [creditCardNo, setCreditCardNo] = useState<number>();
+  const [cvc, setCvc] = useState<number>();
+  const [expire, setExpire] = useState<Date>();
+  const [creditCardError, setCreditCardError] = useState<boolean>(false);
+  const [creditCardErrorInfo, setCreditCardErrorInfo] = useState<string>('');
+  const [cvcError, setCvcError] = useState<boolean>(false);
+  const [cvcErrorInfo, setCvcErrorInfo] = useState<string>('');
+  const [expireError, setExpireError] = useState<boolean>(false);
+  const [expireErrorInfo, setExpireErrorInfo] = useState<string>('');
+
+  const handleCreditCardChange = (event: any) => {
+    const creditCard = event.target.value;
+    setCreditCardNo(creditCard);
+    if (creditCard && !Number(creditCard)) {
+        setCreditCardError(true);
+        setCreditCardErrorInfo('This field should be a number');
+    } else {
+        setCreditCardError(false)
+        setCreditCardErrorInfo('');
+    }
+  }
+
+  const handleCvcChange = (event: any) => {
+    const cvc = event.target.value;
+    setCvc(cvc);
+    if (cvc && !Number(cvc)) {
+        setCvcError(true);
+        setCvcErrorInfo('This field should be a number');
+    } else {
+        setCvcError(false);
+        setCvcErrorInfo('');
+    }
+  }
+  const handleExpireChange = (event: any) => {
+    const expire = event.target.value;
+    const regx = /^(\d{4})-(\d{2})-(\d{2})$/
+    setExpire(expire);
+    if (expire && !regx.test(expire)) {
+        setExpireError(true);
+        setExpireErrorInfo('This field should be a valid date e.g. 2021-08-29');
+    } else {
+        setExpireError(false)
+        setExpireErrorInfo('');
+    }
+  }
+  const handleSubmit = (event:any) => {
+    event.preventDefault();
+
+    if (creditCardError || cvcError || expireError ){
+        alert('please correct the input fields')
+        return
+    }
+    console.log(
+        'credit card number: ', {creditCardNo},
+        'cvc: ', {cvc},
+        'expire', {expire},
+    )
+  }
+
   return (
     <Container>
         <NavigationContainer>
@@ -44,22 +104,31 @@ const CardForm:React.FC = () => {
         <FormContainer>
             <Form>
                 <h2 style={{marginTop: '20px'}}>Welcome {'{'} User.FirstName {'}'}</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <TextField
                         name='Credit Card Number Input'
                         data-testid='CreditCardNumber'
                         style={{display: 'block', marginBottom: '20px', width: 400}} 
                         required 
                         label="Credit Card Number" 
-                        variant="outlined"
+                        variant="outlined" 
+                        value={creditCardNo} 
+                        onChange={handleCreditCardChange}
+                        error={creditCardError}
+                        helperText={creditCardErrorInfo}
                     />
                     <TextField 
                         name='CVC'
-                        data-testid='CVC'
+                        data-testid='data-testid'
                         style={{width: '100px', marginRight: '20px'}}
                         required 
                         label="CVC" 
                         variant="outlined" 
+                        value={cvc} 
+                        onChange={handleCvcChange}
+                        error={cvcError}
+                        helperText={cvcErrorInfo}                
+                        
                     />
                     <TextField
                         name='Expire'
@@ -68,6 +137,11 @@ const CardForm:React.FC = () => {
                         required 
                         label="Expire" 
                         variant="outlined" 
+                        value={expire} 
+                        onChange={handleExpireChange}
+                        error={expireError}
+                        helperText={expireErrorInfo}   
+                        
                         /> 
                     <Button
                         name='Submit'
